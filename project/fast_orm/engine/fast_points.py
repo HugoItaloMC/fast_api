@@ -8,10 +8,12 @@ from secrets import token_hex
 # Instanciando FastAPI
 app = FastAPI()
 
-# Funcão que conecta no banco
 
 
 def conecta_banco():
+    """
+    Conexão com Banco de dados
+    """
     engine = create_engine(CONN, echo=True)
     Session = sessionmaker(bind=engine)
     return Session()
@@ -60,7 +62,7 @@ def login(usuario: str, senha: str):
 
     :param usuario: Usuário do DB
     :param senha: sua senha
-    :return: Dict com Estatus da ocorrência
+    :return: Dict com Status da ocorrência
     """
 
     # Iniciando sessão no banco de dados
@@ -69,7 +71,7 @@ def login(usuario: str, senha: str):
     # Verificando se usuário e senha existe no banco de dados
     user = session.query(Pessoa).filter_by(usuario=usuario, senha=senha).all()
     if len(user) == 0:
-        return {"status": "User not found"}
+        return {"status": "User not engine"}
 
     # Ao criarmos nosso token no login temos alguns critérios:
     # -> Ñ devemos criar redundâncias de usuários com diversos tokens

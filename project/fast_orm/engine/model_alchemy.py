@@ -3,24 +3,26 @@ from sqlalchemy import create_engine, Column, Integer, String, DateTime, Foreign
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+# Parametros de Conexão
 USER = 'root'
 SENHA = 'Acesso93#'
 HOST = 'localhost'
 BANK = 'fast_learn'
 PORT = '3306'
 
+# String de conexão
+CONN = f"mysql+pymysql://{USER}:{SENHA}@{HOST}:{PORT}/{BANK}"
+
 # Informando Para o ORM (SQLAlchemy):
 # ->  SGBD a ser utilizado: 'mysql'
 # -> Motor da linguagem para trabalhar com SGBD utilizado: 'pymysql'
-# -> USER: Usuário em nosso cas o 'root'
+# -> USER: Usuário em nosso caso 'root'
 # - > PASSWORD: Senha de acesso do usuário
 # -> HOST: Local de Hospedagem de SGBD, em nosso caso: localhost
-# -> BANK: Nome do Banco de Dados
+# -> BANK: Nome do Banco de Dados no SGBD, no nosso caso: fast_learn
 # -> PORT: Porta em que o servidor com SGBD encontra hospedado, por pedrão MySQL vem hospedado na porta: 3306
 
-CONN = f"mysql+pymysql://{USER}:{SENHA}@{HOST}:{PORT}/{BANK}"  # string de conexão
-
-# Para se conectar com o DB
+# Instânciando objeto de conexão com o banco de dados
 engine = create_engine(CONN, echo=True)  # echo=True vai me printar informacões conforme manegamos o banco
 
 # Criando sessão
@@ -31,7 +33,7 @@ session = Session()
 Base = declarative_base()
 
 """
-  Como case de estudo, iremos implementar um sistema de login
+  Como caso de estudo, vamos implementar um sistema de login
 criando, autenticando, atualizando e deletando um usuário.
 """
 
@@ -57,9 +59,10 @@ PRIMARY KEY (id)
     senha = Column(String(12))
 
 
-class Tokens(Base):
+# Quando trabalhamos com autenticacão com API`s enviamos o usuário, o tempo de acesso, um token e o tempo de duracão
 
-    # Quando trabalhamos com autenticacão com API`s enviamos o usuário, o tempo de acesso, um token e o tempo de duracão
+
+class Tokens(Base):
 
     """
     Mysql Syntax ->
