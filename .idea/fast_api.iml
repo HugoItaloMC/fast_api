@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/project/first_project" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/project/fast_orm/engine/models" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/project/blx" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/project/blx/src" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.10 (fast_api) (2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
