@@ -1,3 +1,5 @@
+# Módulo de conexão das request do schemas para instânciar os models e também representa-los nas responses aos schemas
+
 from .main import RepositorioBase
 from schemas import schemas
 from infra.sqlalchemy.models import models
