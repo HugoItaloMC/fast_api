@@ -1,6 +1,6 @@
 # Módulo de criacão das entidades utilizando ORM (SQLAlchemy)
 
-from infra.sqlalchemy.config.database import Base
+from high_fast_api.src.infra.sqlalchemy.config.database import Base
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, Boolean
 
