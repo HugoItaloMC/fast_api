@@ -1,5 +1,8 @@
 from logging.config import fileConfig
 
+from high_fast_api.src.infra.sqlalchemy.config.database import Base as bs
+from high_fast_api.src.infra.sqlalchemy.models.models import *
+
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
@@ -18,7 +21,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = None
+target_metadata = bs.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -43,6 +46,7 @@ def run_migrations_offline() -> None:
         url=url,
         target_metadata=target_metadata,
         literal_binds=True,
+        render_as_batch=True,
         dialect_opts={"paramstyle": "named"},
     )
 
@@ -65,7 +69,9 @@ def run_migrations_online() -> None:
 
     with connectable.connect() as connection:
         context.configure(
-            connection=connection, target_metadata=target_metadata
+            connection=connection,
+            target_metadata=target_metadata,
+            render_as_batch=True
         )
 
         with context.begin_transaction():
